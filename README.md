@@ -12,3 +12,16 @@ Meteomatics provides a REST-style API to retrieve historic, current, and forecas
 Install by typing `pip install meteomatics` in your favourite shell.
 
 For a start we recommend to run the example script.
+
+## Local mock server
+
+A minimal fake API is included under `mock_server/` for offline development. It serves canned responses for `query_user_limits` and `query_station_list` — enough as a template for extending to other endpoints.
+
+```
+pip install flask
+python -m mock_server &
+export METEOMATICS_API_BASE_URL=http://127.0.0.1:9999
+python examples/99_mock_server_demo.py
+```
+
+The connector reads `METEOMATICS_API_BASE_URL` at import time, so any `query_*` call will be routed to the mock server while that variable is set. Unset it to go back to the real API.

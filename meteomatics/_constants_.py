@@ -3,9 +3,11 @@
 """
 Collect all constant definitions here
 """
+import os
+
 from . import __version__
 
-DEFAULT_API_BASE_URL = "https://api.meteomatics.com"
+DEFAULT_API_BASE_URL = os.environ.get("METEOMATICS_API_BASE_URL", "https://api.meteomatics.com")
 
 VERSION = 'python_v{}'.format(__version__)
 
